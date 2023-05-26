@@ -3,3 +3,7 @@
 //
 
 #include "Car.h"
+
+int Car::getPos() const {
+    return position;
+}
