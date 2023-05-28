@@ -13,15 +13,55 @@
 
 class Highway {
     size_t length;
-    size_t carCount;
-    Car* cars[];
+    size_t vehicleCount;
+    Vehicle** vehicles;
 public:
-    Highway(size_t length);
-    void addCar(Car* newCar);
-    int followDistance(size_t index);
-    void print(std::ostream& os);
-    void cycle();
-    ~Highway() {}
+    /**
+     * Highway constructor
+     * @param length
+     */
+    explicit Highway(size_t length) : length(length), vehicleCount(0) {
+        vehicles = new Vehicle*[length];
+        for (size_t i = 0; i < length; i++) {
+            vehicles[i] = nullptr;
+        }
+    }
+
+    /**
+    * Adds new vehicle to the array using dynamic memory allocation
+    * @param type
+    * @param position
+    * @param speed
+    */
+    void addVehicle(char type, int position, int speed);
+
+    /**
+     * Moves vehicle numOfCells cells forward
+     * @param vehicle
+     * @param numOfCells
+     */
+    void moveVehicle(Vehicle* vehicle, int numOfCells);
+
+    /**
+     * Transforms the state of the Highway into the next cycle
+     */
+    void simulate();
+
+    /**
+     * Prints the current state
+     * @param os
+     */
+    void printState(std::ostream& os);
+
+    /**
+     * Highway destructor
+     */
+    ~Highway() {
+        for (size_t i = 0; i < vehicleCount; ++i) {
+            delete vehicles[i];
+        }
+        delete[] vehicles;
+    }
 };
 
 

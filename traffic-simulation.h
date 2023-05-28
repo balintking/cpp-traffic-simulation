@@ -8,6 +8,7 @@
 #include "traffic-simulation.h"
 #include "Simulation.h"
 #include "Highway.h"
+#include "Vehicle.h"
 #include "Car.h"
 
 bool humanFactor();

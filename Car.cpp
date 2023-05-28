@@ -2,8 +2,11 @@
 // Created by Balint Kiraly on 2023. 05. 14..
 //
 
+#include <iostream>
+#include <fstream>
+
 #include "Car.h"
 
-int Car::getPos() const {
-    return position;
+void Car::display(std::ostream &os) {
+    os << "C";
 }

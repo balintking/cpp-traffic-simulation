@@ -6,16 +6,18 @@
 #define TRAFFIC_SIMULATION_CAR_H
 
 #include "Car.h"
+#include "Vehicle.h"
 
-class Car {
-    int speed;
-    int position;
+class Car : public Vehicle {
 public:
-    Car(int speed, int position) :speed(speed), position(position) {}
-    int getPos() const;
-    void cycle();
+    Car(int position, int speed) : Vehicle(position, speed, 5) {}
+
+    /**
+     * displays the car as symbol
+     * @param os
+     */
+    void display(std::ostream& os);
     ~Car() {}
 };
-
 
 #endif //TRAFFIC_SIMULATION_CAR_H

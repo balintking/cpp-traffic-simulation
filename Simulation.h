@@ -13,12 +13,39 @@
 class Simulation {
     size_t cycleCount;
     size_t highwayCount;
-    Highway* highways[];
+    Highway** highways;
 public:
-    Simulation():cycleCount(0), highwayCount(0) {}
-    void config(const char* filename);
-    int cycle();
-    ~Simulation();
+    /**
+     * Simulation constructor
+     */
+    Simulation():cycleCount(0), highwayCount(0), highways(nullptr) {}
+
+    /**
+     * Adds new Highway to Simulation from config file
+     * @param filename
+     */
+    void addHighWay(const char* filename);
+
+    /**
+     * Calls the simulate function of all the Highways it contains
+     * @return
+     */
+    int simulate();
+
+    /**
+     * Calls every Highway's print function
+     */
+    void printState(std::ostream& os);
+
+    /**
+     * Simulation destructor
+     */
+    ~Simulation() {
+        for (size_t i = 0; i < highwayCount; ++i) {
+            delete highways[i];
+        }
+        delete[] highways;
+    }
 };
 
 

@@ -6,18 +6,23 @@
 #include <iostream>
 
 #include "traffic-simulation.h"
+using std::cin, std::cout, std::endl;
 
+/**
+ * Gets config file name and calls Simulation's addHighWay function
+ * @param simulation
+ */
 void config(Simulation& simulation) {
-    char filename[5];
+    char filename[40];
 
-    std::cout << "Config file: ";
-    std::cin >> filename;
+    cout << "Config file: ";
+    cin >> filename;
 
     try {
-        simulation.config(filename);
+        simulation.addHighWay(filename);
     }
     catch (...) {
-        std::cout << "configuration unsuccessful";
+        cout << "configuration unsuccessful";
     }
 
 }
@@ -25,24 +30,43 @@ void config(Simulation& simulation) {
 int main() {
     Simulation simulation;
 
-    std::cout << "Add Highway [1]\t\tExit [2]" << std::endl;
+// If defined, input will be taken from file.
+#ifdef CPORTA
+    std::ifstream testin("test_input.txt");
+    cin.rdbuf(testin.rdbuf());
+#endif
+
+    cout << "Add Highway [1]\t\tExit [2]" << endl;
 
     char option;
 
-    while ((std::cin >> option) && option != EOF) {
-        switch (option) {
-            case ('1'): {
-                config(simulation);
-                break;
+    while ((cin >> option) && option != EOF) {
+        try {
+            switch (option) {
+                case ('1'): {               //new highway
+                    config(simulation);
+                    break;
+                }
+                case ('2'): {               //exit
+                    exit(0);
+                }
+                case (' '): {               //simulate
+                    simulation.simulate();
+                    break;
+                }
+                default: break;
             }
-            case ('2'): {
-                exit(0);
-            }
-            case (' '): {
-                simulation.cycle();
-            }
+        } catch (std::exception& exc) {
+            cout << "Error: " << exc.what() << std::endl;
+        } catch(...) {
+            cout << "Something went wrong." << endl;
+            exit(1);
         }
-        std::cout << "Add Highway [1]\t\tNext Cycle [SPACE]\t\tExit [2]" << std::endl;
+
+        simulation.printState(cout);
+        cout << endl;
+
+        cout << "Add Highway [1]\t\tNext Cycle [SPACE]\t\tExit [2]" << endl;
     }
 
     return 0;
