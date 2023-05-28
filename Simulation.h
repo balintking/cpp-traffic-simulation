@@ -7,6 +7,7 @@
 
 #include <cstdio>
 
+#include "memtrace.h"
 #include "Simulation.h"
 #include "Highway.h"
 

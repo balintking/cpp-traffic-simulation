@@ -4,5 +4,4 @@ project(traffic_simulation LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-DMEMTRACE")
 
-#add_executable(traffic_simulation test/test1.cpp)
-add_executable(traffic_simulation traffic-simulation.cpp Simulation.cpp Simulation.h Highway.cpp Highway.h Car.cpp Car.h Vehicle.cpp Vehicle.h)
+add_executable(traffic_simulation traffic-simulation.cpp Simulation.cpp Simulation.h Highway.cpp Highway.h Car.cpp Car.h Vehicle.cpp Vehicle.h memtrace.cpp)

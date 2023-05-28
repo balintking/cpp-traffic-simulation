@@ -39,15 +39,17 @@ int main() {
     cin.rdbuf(testin.rdbuf());
 #endif
 
+    cout << "Highway traffic simulation" << endl;
     cout << "Add Highway [2]\t\tExit [3]" << endl;
 
     char option;
+    int cycle = 0;
 
     while ((cin >> option) && option != EOF) {
         try {
             switch (option) {
                 case ('1'): {               //simulate
-                    simulation.simulate();
+                    cycle = simulation.simulate();
                     break;
                 }
                 case ('2'): {               //new highway
@@ -55,6 +57,7 @@ int main() {
                     break;
                 }
                 case ('3'): {               //exit
+                    simulation.~Simulation();
                     exit(0);
                 }
                 default: break;
@@ -66,6 +69,9 @@ int main() {
             exit(1);
         }
 
+        cout << endl;
+        cout << "Cycle " << cycle << endl;
+        cout << endl;
         simulation.printState(cout);
         cout << endl;
 

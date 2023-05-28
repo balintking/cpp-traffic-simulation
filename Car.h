@@ -5,6 +5,7 @@
 #ifndef TRAFFIC_SIMULATION_CAR_H
 #define TRAFFIC_SIMULATION_CAR_H
 
+#include "memtrace.h"
 #include "Car.h"
 #include "Vehicle.h"
 

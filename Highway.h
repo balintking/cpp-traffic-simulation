@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdio>
 
+#include "memtrace.h"
 #include "Highway.h"
 #include "Car.h"
 
@@ -57,7 +58,7 @@ public:
      * Highway destructor
      */
     ~Highway() {
-        for (size_t i = 0; i < vehicleCount; ++i) {
+        for (size_t i = 0; i < length; ++i) {
             delete vehicles[i];
         }
         delete[] vehicles;

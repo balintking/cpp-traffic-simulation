@@ -7,6 +7,9 @@
 
 #include <iostream>
 
+#include "memtrace.h"
+
+
 class Vehicle {
 protected:
     int position;
