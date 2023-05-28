@@ -29,9 +29,10 @@ void Vehicle::decelerate(int emptyCells) {
 }
 
 void Vehicle::randomDeceleration(double p) {
+    srand(static_cast<unsigned>(time(nullptr)));
     double randomValue = static_cast<int>(rand()) % 100;
 
     if (100*p > randomValue) {
-        speed--;
+        if (speed > 0) speed--;
     }
 }
