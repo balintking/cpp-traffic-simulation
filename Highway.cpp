@@ -39,7 +39,7 @@ void Highway::moveVehicle(Vehicle *vehicle, int numOfCells) {
     int newPosition = currentPosition + numOfCells;
 
     vehicles[currentPosition] = nullptr;
-    if (newPosition >= length) {
+    if (newPosition >= (int)length) {
         delete vehicle;
     }
     else {
@@ -50,8 +50,8 @@ void Highway::moveVehicle(Vehicle *vehicle, int numOfCells) {
 
 void Highway::simulate() {
     int emptyCells = 5;
-    for (int i = length-1; i >= 0; --i) {
-        Vehicle* currentVehicle = vehicles[i];
+    for (size_t i = length; i > 0; --i) {
+        Vehicle* currentVehicle = vehicles[i-1];
 
         if (currentVehicle == nullptr) {
             emptyCells++;
@@ -70,11 +70,13 @@ void Highway::simulate() {
 
 void Highway::printState(std::ostream &os) {
     for (size_t i = 0; i < length; ++i) {
+        os << " ";
         if (vehicles[i] != nullptr) {
             vehicles[i]->display(os);
         }
         else {
             os << "-";
         }
+        os << " ";
     }
 }

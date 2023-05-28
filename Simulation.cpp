@@ -6,7 +6,9 @@
 #include <fstream>
 
 #include "Simulation.h"
-using std::cin, std::cout, std::endl;
+using std::cin;
+using std::cout;
+using std::endl;
 
 
 void Simulation::addHighWay(const char *filename) {

@@ -8,5 +8,5 @@
 #include "Car.h"
 
 void Car::display(std::ostream &os) {
-    os << speed;
+    os << "C";
 }

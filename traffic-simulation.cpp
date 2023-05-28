@@ -9,7 +9,9 @@
 #include "Highway.h"
 #include "Vehicle.h"
 #include "Car.h"
-using std::cin, std::cout, std::endl;
+using std::cin;
+using std::cout;
+using std::endl;
 
 /**
  * Gets config file name and calls Simulation's addHighWay function
@@ -34,7 +36,7 @@ int main() {
     Simulation simulation;
 
 // If defined, input will be taken from file.
-#ifdef CPORTA
+#ifdef CPORTA_INPUT
     std::ifstream testin("test_input.txt");
     cin.rdbuf(testin.rdbuf());
 #endif
