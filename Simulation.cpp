@@ -30,14 +30,16 @@ void Simulation::addHighWay(const char *filename) {
             newHighWay->addVehicle(type, pos, speed);
         }
 
+        highwayCount++;
         //adding it to array
-        Highway** temp = highways;
-        delete[] highways;
-        highways = new Highway*[++highwayCount];
+        Highway** temp = new Highway*[highwayCount];
         for (size_t i = 0; i < highwayCount-1; ++i) {
-            highways[i] = temp[i];
+            temp[i] = highways[i];
         }
-        highways[highwayCount-1] = newHighWay;
+        temp[highwayCount-1] = newHighWay;
+        delete[] highways;
+
+        highways = temp;
     }
     catch (const std::exception& e) {
         cout << "Error during opening config file: " << e.what() << endl;
@@ -56,5 +58,6 @@ int Simulation::simulate() {
 void Simulation::printState(std::ostream& os) {
     for (size_t i = 0; i < highwayCount; ++i) {
         highways[i]->printState(os);
+        os << std::endl;
     }
 }
